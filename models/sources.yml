@@ -1,0 +1,20 @@
+sources:
+  - name: bronze
+    description: "This source contains the raw data tables for customers, orders, and order items."
+    database: skp-dbt-dev
+    schema: ops_DataMart_SourceTable
+    config:
+      freshness:
+        warn_after: {count: 1, period: day}
+        error_after: {count: 3, period: day}
+      loaded_at_field: updated_at
+    tables:
+      - name: cust
+        description: "This table contains customer information in bigquery ."
+        identifier: CUSTOMERS
+      - name: orders
+        description: "This table contains order information in bigquery."
+        identifier: ORDERS
+      - name: order_items
+        description: "This table contains order item information in bigquery."
+        identifier: ORDERITEMS

@@ -1,0 +1,18 @@
+
+target/
+dbt_packages/
+logs/
+dbt_internal_packages/
+
+# sensitive files
+profiles.yml
+*.json
+
+# python
+__pycache__/
+*.pyc
+.env
+
+# OS files
+.DS_Store
+Thumbs.db

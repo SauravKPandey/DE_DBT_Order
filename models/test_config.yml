@@ -1,0 +1,44 @@
+models:
+  - name: customers_stg
+    description: "This is the staging model for customers data."
+    columns:
+      - name: email
+        description: "Customer's email address."
+        tests:
+          - string_not_empty
+      - name: customerid
+        description: "Unique identifier for each customer."
+        tests:
+          - not_null
+          - unique
+  - name: orders_stg
+    description: "This is the staging model for orders data." 
+    columns:
+      - name: StatusCD
+        description: "{{ doc('StatusCD') }}"
+        tests:
+          - string_not_empty
+          - accepted_values:
+              arguments:
+                values: ['01', '02', '03']
+      - name: orderid
+        tests:
+          - not_null
+          - unique
+  
+  - name: OrderItems_stg
+    columns:
+      - name: orderid
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('orders_stg')
+                field: orderid
+  - name: orders_fact
+    columns:
+      - name: orderid
+        tests:
+          - not_null
+          - unique
+  

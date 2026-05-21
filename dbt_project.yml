@@ -1,0 +1,34 @@
+name: 'dbt_proj_demo_v1'
+version: '1.0.0'
+
+profile: 'dbt_proj_demo_v1'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbt_proj_demo_v1:
+    staging:
+      +schema: ops_DataMart_silver
+      +materialized: view
+    
+    gold:
+      +schema: ops_DataMart_gold
+      +materialized: table
+    
+    # Config indicated by + and applies to all files under models/example/
+seeds:
+  dbt_proj_demo_v1:
+    +schema: ops_DataMart_lookup
+    +quote_columns: false
+    
+
+      
