@@ -41,4 +41,4 @@ jobs:
 
       - name: dbt test
         run: dbt test
-        working-directory: dbt_proj_demo_v1    # ← and here
+        working-directory: dbt_proj_demo_v1    
