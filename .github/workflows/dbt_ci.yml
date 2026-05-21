@@ -29,16 +29,16 @@ jobs:
 
       - name: Set up GCP keyfile
         run: |
-          echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}" > /tmp/keyfile.json
+          echo '${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}' > /tmp/keyfile.json
 
       - name: Install dbt packages
         run: dbt deps
-        working-directory: dbt_proj_demo_v1    # ← tells GitHub where your project is
+        
 
       - name: dbt compile
         run: dbt compile
-        working-directory: dbt_proj_demo_v1    # ← same here
+        
 
       - name: dbt test
         run: dbt test
-        working-directory: dbt_proj_demo_v1    # ← and here
+         
